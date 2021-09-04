@@ -26,7 +26,7 @@ def draw_window():
     screen.blit(YELLOW_BIN, (WIDTH-YELLOW_BIN.get_width(),HEIGHT/2-YELLOW_BIN.get_height()/2))
 
     # Draw a solid blue circle in the center
-    pygame.draw.circle(screen, (245, 245, 220), (400, 400), 75)
+    pygame.draw.circle(screen, (245, 245, 220), CIRCLE_COORDS, CIRCLE_RADIUS)
 
     #pygame.display.flip() # Flip the display
 
@@ -35,14 +35,17 @@ def main():
     clock = pygame.time.Clock()
     # Run until the user asks to quit
     running = True
+    guy = dude.Dude(LIVES) #There should only ever be one Dude instance
+
     while running:
         clock.tick(FPS)
         draw_window() #Init screen
 
         ##Game logic goes here!##
-        guy = dude.Dude(LIVES)
+        guy.draw() #Only draw inside of a game loop!
 
         # If guy dies, end game message shows
+        #   guy.death() is called in Dude menthod (upon health <= 0)
         #draw_endgame()
 
         # Did the user click the window close button?
@@ -50,6 +53,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             ##Grab more events here!##
+            guy.events_processor(event)
             
 
         # Update the screen
