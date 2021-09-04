@@ -28,7 +28,7 @@ def main():
         draw_window() #Init screen
 
         ##Game logic goes here!##
-
+        guy = dude.Dude(LIVES)
 
 
 
