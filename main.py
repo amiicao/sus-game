@@ -16,11 +16,7 @@ def draw_window():
     # Draw a solid blue circle in the center
     pygame.draw.circle(screen, (245, 245, 220), (400, 400), 75)
 
-    # Flip the display
-    #pygame.display.flip()
-
-    # Update the screen
-    pygame.display.update()
+    #pygame.display.flip() # Flip the display
 
 
 def main():
@@ -29,11 +25,23 @@ def main():
     running = True
     while running:
         clock.tick(FPS)
-        draw_window()
+        draw_window() #Init screen
+
+        ##Game logic goes here!##
+
+
+
+
         # Did the user click the window close button?
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            ##Grab more events here!##
+            
+
+
+        # Update the screen
+        pygame.display.update()
     # Done! Time to quit.
     pygame.quit()
 if __name__ == "__main__":
