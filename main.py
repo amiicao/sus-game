@@ -6,7 +6,7 @@ import os
 pygame.init()
 
 FPS = 60
-BIN_WIDTH, BIN_HEIGHT = 300, 250
+BIN_WIDTH, BIN_HEIGHT = 130, 200
 WIDTH, HEIGHT = 800, 800
 
 # Set up the drawing window
@@ -28,7 +28,7 @@ def draw_window():
     screen.blit(BACKGROUND, (0,0))
 
     # Add the Bins on NESW of screen
-    screen.blit(BLUE_BIN, (450, 250 ))
+    screen.blit(BLUE_BIN, (0, 0 ))
     screen.blit(GREEN_BIN, (50, 250))
     screen.blit(BLACK_BIN, (250, 450))
     screen.blit(YELLOW_BIN, (250, 50))
