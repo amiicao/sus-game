@@ -12,10 +12,12 @@ def draw_endgame():
 def draw_window():
     
     screen.blit(BACKGROUND, (0,0))
-
     # showing the remaining lives
-    LIVES_REM= HEALTH_FONT.render("Lives: "+ str(LIVES), 25, (0,0,0))
-    screen.blit(LIVES_REM, (WIDTH - LIVES_REM.get_width() - 10, 10))
+    Lives_text = HEALTH_FONT.render("Lives: ", 15, (0,0,0))
+    screen.blit(Lives_text, (WIDTH - Lives_text.get_width()- LIFE.get_width()*5 - 15, 0)) #Lives: ***** |
+    for i in range(LIVES):
+        #LIVES_REM= HEALTH_FONT.render("Lives: "+ str(LIVES), 25, (0,0,0))
+        screen.blit(LIFE, (WIDTH - LIFE.get_width()*5 - 15 + LIFE.get_width()*i, LIFE.get_height()/2)) # let i = 2, |    Lives: 
     
     # Add the Bins on NESW of screen
     screen.blit(BLUE_BIN, (WIDTH/2-BLUE_BIN.get_width()/2, 0 ))
@@ -54,5 +56,6 @@ def main():
         pygame.display.update()
     # Done! Time to quit.
     pygame.quit()
+
 if __name__ == "__main__":
     main()

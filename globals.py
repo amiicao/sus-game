@@ -6,7 +6,7 @@ FPS = 60
 BIN_WIDTH, BIN_HEIGHT = 130, 200
 WIDTH, HEIGHT = 800, 800
 
-HEALTH_FONT = pygame.font.SysFont('comicsans', 100)
+HEALTH_FONT = pygame.font.SysFont('comicsans', 75)
 ENDGAME_FONT = pygame.font.SysFont('comicsans', 100)
 
 # Set up the drawing window
@@ -26,6 +26,8 @@ BLACK_BIN_IMAGE = pygame.image.load(os.path.join('assets','BLACK_BIN.png'))
 BLACK_BIN = pygame.transform.scale(BLACK_BIN_IMAGE, (BIN_WIDTH, BIN_HEIGHT))
 YELLOW_BIN_IMAGE = pygame.image.load(os.path.join('assets','YELLOW_BIN.png'))
 YELLOW_BIN = pygame.transform.scale(YELLOW_BIN_IMAGE, (BIN_WIDTH, BIN_HEIGHT))
+LIFE_IMAGE = pygame.image.load(os.path.join('assets','LIVES.png'))
+LIFE = pygame.transform.scale(LIFE_IMAGE, (25, 30))
 
 DUDE_ATK_IMG = pygame.image.load(os.path.join('assets','SPRITE_ATK.png'))
 DUDE_HURT_IMG = pygame.image.load(os.path.join('assets','SPRITE_HURT.png'))
