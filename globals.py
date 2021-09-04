@@ -8,6 +8,8 @@ WIDTH, HEIGHT = 800, 800
 
 HEALTH_FONT = pygame.font.SysFont('comicsans', 75)
 ENDGAME_FONT = pygame.font.SysFont('comicsans', 100)
+CIRCLE_COORDS = (400, 400)
+CIRCLE_RADIUS = 75
 
 # Set up the drawing window
 screen = pygame.display.set_mode([WIDTH, HEIGHT]) #This must run before anything is drawn
@@ -29,6 +31,10 @@ YELLOW_BIN = pygame.transform.scale(YELLOW_BIN_IMAGE, (BIN_WIDTH, BIN_HEIGHT))
 LIFE_IMAGE = pygame.image.load(os.path.join('assets','LIVES.png'))
 LIFE = pygame.transform.scale(LIFE_IMAGE, (25, 30))
 
+DUDE_HEIGHT_OFFSET = 50
 DUDE_ATK_IMG = pygame.image.load(os.path.join('assets','SPRITE_ATK.png'))
+DUDE_ATK = pygame.transform.scale(DUDE_ATK_IMG, (CIRCLE_RADIUS, CIRCLE_RADIUS + DUDE_HEIGHT_OFFSET))
 DUDE_HURT_IMG = pygame.image.load(os.path.join('assets','SPRITE_HURT.png'))
+DUDE_HURT = pygame.transform.scale(DUDE_HURT_IMG, (CIRCLE_RADIUS, CIRCLE_RADIUS + DUDE_HEIGHT_OFFSET))
 DUDE_REST_IMG = pygame.image.load(os.path.join('assets','SPRITE_REST.png'))
+DUDE_REST = pygame.transform.scale(DUDE_REST_IMG, (CIRCLE_RADIUS, CIRCLE_RADIUS + DUDE_HEIGHT_OFFSET))
