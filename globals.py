@@ -5,6 +5,9 @@ FPS = 60
 BIN_WIDTH, BIN_HEIGHT = 130, 200
 WIDTH, HEIGHT = 800, 800
 
+HEALTH_FONT = pygame.font.SysFont('comicsans', 40)
+ENDGAME_FONT = pygame.font.SysFont('comicsans', 100)
+
 # Set up the drawing window
 screen = pygame.display.set_mode([WIDTH, HEIGHT]) #This must run before anything is drawn
 
