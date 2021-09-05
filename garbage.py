@@ -56,3 +56,28 @@ class Garbage(Unit): #Pieces of trash
 
     def reached_bin(self, bin_type: GarbageType): #Reached the garbage bin; Diff action depending on if correct bin
         pass
+
+
+
+
+
+
+
+
+
+
+
+    # here are the lines of code to show an explosion. 
+
+    # example:
+    # if colleratct blue bin:
+        #screen.blit(EXPLOSION,(WIDTH/2-BLUE_BIN.get_width()/2, 0)) #bluebin
+        #pygame.display.update()
+    
+
+    
+        #screen.blit(EXPLOSION,(WIDTH/2-BLUE_BIN.get_width()/2, 0)) #bluebin
+        #screen.blit(EXPLOSION,(0,(HEIGHT/2-GREEN_BIN.get_height()/2))) #greenbin
+        #screen.blit(EXPLOSION,(WIDTH/2-BLACK_BIN.get_width()/2, HEIGHT-BLACK_BIN.get_height())) #blackbin
+        #screen.blit(EXPLOSION,(WIDTH-YELLOW_BIN.get_width(),HEIGHT/2-YELLOW_BIN.get_height()/2)) #yellowbin
+        #pygame.display.update()

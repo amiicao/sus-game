@@ -78,6 +78,7 @@ class Dude(Unit):
         self.change_stance(Stance.HURT) #Timer set, injured dude cannot attack/revert to rest instantly
         self.health -= 1
 
+
     #Call in main game loop; Checks if guy hit by garbage & injures him if so
     def hit_check(self, garbage_list) -> bool: #Takes in list of active Garbage objs from garbageController
         for piece in garbage_list:

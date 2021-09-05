@@ -5,6 +5,7 @@ from enum import Enum
 import random
 import math
 pygame.font.init()
+pygame.mixer.init()
 
 
 isALIVE = True
