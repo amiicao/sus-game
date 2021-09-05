@@ -3,6 +3,7 @@ from pygame.constants import WINDOWHITTEST
 from globals import * #Copy over the namespace
 import dude
 from garbageController import GarbageController
+import atk_range
 
 pygame.init()
 
@@ -21,13 +22,16 @@ def draw_window(lives):
     screen.blit(BACKGROUND, (0,0))
     # showing the remaining lives
     Lives_text = HEALTH_FONT.render("Lives: ", 15, (127,255,212))
-    screen.blit(Lives_text, (WIDTH - Lives_text.get_width()- LIFE.get_width()*5 - 15, 5)) #Lives: ***** |
+    #screen.blit(Lives_text, (WIDTH - Lives_text.get_width()- LIFE.get_width()*5 - 15, 5)) 
     for i in range(lives):
-        #LIVES_REM= HEALTH_FONT.render("Lives: "+ str(LIVES), 25, (0,0,0))
-        screen.blit(LIFE, (WIDTH - LIFE.get_width()*5 - 15 + LIFE.get_width()*i, LIFE.get_height()/2)) # let i = 2, |    Lives: 
+    #    screen.blit(LIFE, (WIDTH - LIFE.get_width()*5 - 15 + LIFE.get_width()*i, LIFE.get_height()/2)) # let i = 2, |    Lives: 
+        screen.blit(LIFE, (WIDTH - LIFE.get_width()*20 - 15 + LIFE.get_width()*i, LIFE.get_height()/2)) # let i = 2, |    Lives: 
+    
 
-    # Draw a solid circle in the center
-    pygame.draw.circle(screen, (245, 245, 220), CIRCLE_COORDS, CIRCLE_RADIUS)
+    
+
+###################### added base to the line
+   # pygame.draw.circle(screen, (245, 245, 220), CIRCLE_COORDS, CIRCLE_RADIUS)
 
 def draw_bins() -> List: #Get bin rects
     bins_rect = [] # Add the Bins on NESW of screen
@@ -40,9 +44,10 @@ def draw_bins() -> List: #Get bin rects
 def main():
     clock = pygame.time.Clock()
     # Run until the user asks to quit
-    running = True
+    running = True  
     guy = dude.Dude(LIVES) #There should only ever be one Dude instance
     garbage_controller = GarbageController()
+    zone = atk_range.Atk_range(ZONE_IMG.get_width() )
 
     while running:
         clock.tick(FPS)
@@ -51,6 +56,7 @@ def main():
         bins = draw_bins()
 
         ##Game logic goes here!##
+        zone.draw()
         guy.draw() #Only draw inside of a game loop!
         garbage_controller.update(bins)
         guy.hit_check(garbage_controller.actives)
@@ -58,7 +64,7 @@ def main():
 
         # If guy dies, end game message shows
         if(remHealth == 0):
-            draw_endgame()
+            draw_endgame() 
             running = False
 
         # Did the user click the window close button?
@@ -66,7 +72,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             ##Grab more events here!##
-            guy.events_processor(event, garbage_controller.actives)
+            guy.events_processor(event, garbage_controller.actives,zone)
             garbage_controller.events_processor(event)
 
             

@@ -19,8 +19,8 @@ HEALTH_FONT = pygame.font.SysFont('comicsans', 75)
 ENDGAME_FONT = pygame.font.SysFont('comicsans', 75)
 CIRCLE_COORDS = (400, 400)
 CIRCLE_RADIUS = 75
-LIVES = 5
-GARBAGE_SIZE = 25
+LIVES = 20
+GARBAGE_SIZE = 35
 
 class Direction(Enum):
     NEUTRAL = 0 #Batter is not swinging in any direction
@@ -34,6 +34,7 @@ class GarbageType(Enum): #NESW
     GREEN = 1
     BLACK = 2
     YELLOW = 3
+
 
 #Images
 BACKGROUND = pygame.transform.scale(pygame.image.load(os.path.join('assets','BACKGROUND.jpg')),(WIDTH,HEIGHT))
@@ -61,3 +62,6 @@ DUDE_HURT_IMG = pygame.image.load(os.path.join('assets','SPRITE_HURT.png'))
 DUDE_HURT = pygame.transform.scale(DUDE_HURT_IMG, (CIRCLE_RADIUS, CIRCLE_RADIUS + DUDE_HEIGHT_OFFSET))
 DUDE_REST_IMG = pygame.image.load(os.path.join('assets','SPRITE_REST.png'))
 DUDE_REST = pygame.transform.scale(DUDE_REST_IMG, (CIRCLE_RADIUS, CIRCLE_RADIUS + DUDE_HEIGHT_OFFSET))
+
+ZONE_IMAGE = pygame.image.load(os.path.join('assets','ZONE.png'))
+ZONE_IMG = pygame.transform.scale(ZONE_IMAGE, (CIRCLE_RADIUS + 50, CIRCLE_RADIUS + DUDE_HEIGHT_OFFSET + 50))

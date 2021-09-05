@@ -1,6 +1,7 @@
 from pygame.constants import DOUBLEBUF, KEYUP, K_DOWN, K_SPACE, K_a, K_w
 from globals import *
 from unit import *
+from atk_range import *
 
 class Stance(Enum):
     REST = DUDE_REST
@@ -19,7 +20,7 @@ class Dude(Unit):
         self.last_injury_time = 0 #Used to track DUDE_HURT stance
         self.coordinates = (CIRCLE_COORDS[0] - DUDE_HEIGHT_OFFSET + 10, CIRCLE_COORDS[1] - DUDE_HEIGHT_OFFSET - 10)
     
-    def events_processor(self, event, garbage_list): #Call method as part of events loop
+    def events_processor(self, event, garbage_list, zone): #Call method as part of events loop
         #If dude is injured, he is not able to aim in a direction or do anything
         injury_time_delta = pygame.time.get_ticks() - self.last_injury_time
         if(self.stance == Stance.HURT and injury_time_delta >= self.injurytimer):
@@ -38,7 +39,8 @@ class Dude(Unit):
             if(event.key == pygame.K_SPACE and self.stance == Stance.REST): #Must click spacebar
                 self.last_swing_time = pygame.time.get_ticks()
                 self.change_stance(Stance.ATK)
-                self.swing_bat(self.direction, garbage_list) #Cannot swing in neutral
+                self.swing_bat(self.direction, garbage_list,zone) #Cannot swing in neutral
+#!!!!!!!!!!!!!!!!!
             
             if(event.key in (pygame.K_w, pygame.K_UP)):
                 self.direction = Direction.NORTH
@@ -61,12 +63,13 @@ class Dude(Unit):
 
     def draw(self):
         self.rect = screen.blit(self.stance.value, self.coordinates) #Draw
-        self.collide_rect = self.rect.inflate(50,50)
+        self.collide_rect = self.rect.inflate(1,1)
 
     #Template: Implement collision logic with trash objects; Only check for collision at moment of KEYDOWN!
-    def swing_bat(self, hit_dir, garbage_list):
+    def swing_bat(self, hit_dir, garbage_list, zone):
         for piece in garbage_list: #Can hit multiple pieces out at once
-            if (self.collide_rect.colliderect(piece.collide_rect)):
+###            #if (self.collide_rect.colliderect(piece.collide_rect)):
+            if (zone.collide_rect.colliderect(piece.collide_rect)):
                 piece.batted(hit_dir)
 
     #Call when guy is hit
@@ -74,16 +77,16 @@ class Dude(Unit):
         self.last_injury_time = pygame.time.get_ticks()
         self.change_stance(Stance.HURT) #Timer set, injured dude cannot attack/revert to rest instantly
         self.health -= 1
- 
- #       if(self.health <= 0):
- #           self.death() 
 
     #Call in main game loop; Checks if guy hit by garbage & injures him if so
     def hit_check(self, garbage_list) -> bool: #Takes in list of active Garbage objs from garbageController
         for piece in garbage_list:
-            if(self.collide_rect.colliderect(piece.collide_rect) and self.stance == Stance.REST):
+            #if(self.collide_rect.colliderect(piece.collide_rect) and self.stance == Stance.REST and temp == True):
+            if(self.collide_rect.colliderect(piece.collide_rect) and self.stance == Stance.REST ):
                 piece.hit_guy()
                 self.injured()
+                print ("been hit")
+            #del piece
 
     #passing health to
     def getHealth(self):
