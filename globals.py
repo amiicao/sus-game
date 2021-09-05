@@ -23,6 +23,7 @@ CIRCLE_COORDS = (400, 400)
 CIRCLE_RADIUS = 75
 LIVES = 5
 GARBAGE_SIZE = 65
+curr_score = [0] #Pass the inside value by reference
 
 class Direction(Enum):
     NEUTRAL = 0 #Batter is not swinging in any direction

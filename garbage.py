@@ -46,18 +46,21 @@ class Garbage(Unit): #Pieces of trash
     def batted(self, direction): #Batted away by the guy
         self.head_inwards = False
         self.direction = direction
-        pass
 
     def hit_guy(self): #Successfully hit the guy; Only deal with the piece, not the guy!
         self.collide_rect.size = (0,0); #Effectively remove the collision box around the "used" piece
         self.head_inwards = True #Get this piece to stop moving
 
     def reached_bin(self, bin_type: GarbageType): #Reached the garbage bin; Diff action depending on if correct bin
+        global curr_score
         if (self.type == bin_type): #if reached correct bin; piece dies peacefully
             ding = pygame.mixer.Sound(os.path.join('assets', 'smw_coin.wav'))
             pygame.mixer.Sound.play(ding)
+            curr_score[0] += 1
         else:
+            curr_score[0] -= 1
             self.explode()
+        #print(curr_score)
     
     def explode(self): #Upon reaching incorrect bin
         print("explosion")

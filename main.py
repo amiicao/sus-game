@@ -9,9 +9,13 @@ pygame.init()
 
 #GAME OVER message
 def draw_endgame():
+    global curr_score
     print("End game")
     endgame_text = ENDGAME_FONT.render("GAME OVER", 15, (127,255,212))
-    screen.blit(endgame_text,(WIDTH/2 - endgame_text.get_width()/2, HEIGHT/2 ))
+    endgame_text_coords = (WIDTH/2 - endgame_text.get_width()/2, HEIGHT/2)
+    score_text = ENDGAME_FONT.render(f"Score : {curr_score[0]}", 15, (127,255,212))
+    screen.blit(endgame_text, endgame_text_coords)
+    screen.blit(score_text, (endgame_text_coords[0] + 45, endgame_text_coords[1] - 55))
     pygame.display.update()
     while True:
         for event in pygame.event.get():
@@ -19,10 +23,14 @@ def draw_endgame():
                 return
 
 def draw_window(lives):
+    global curr_score
     screen.blit(BACKGROUND, (0,0))
     # showing the remaining lives
-    Lives_text = HEALTH_FONT.render("Lives: ", 15, (127,255,212))
-    screen.blit(Lives_text, (WIDTH - Lives_text.get_width()- LIFE.get_width()*5 - 15, 5)) 
+    lives_text = HEALTH_FONT.render("Lives: ", 15, (127,255,212))
+    score_text = HEALTH_FONT.render(f"Score: {curr_score[0]}", 15, (127,255,212))
+    x_coord_text = WIDTH - lives_text.get_width()- LIFE.get_width()*5 - 15
+    screen.blit(lives_text, (x_coord_text, 5))
+    screen.blit(score_text, (x_coord_text, 55)) 
     for i in range(lives):
         screen.blit(LIFE, (WIDTH - LIFE.get_width()*5 - 15 + LIFE.get_width()*i, LIFE.get_height()/2)) # let i = 2, |    Lives: 
     

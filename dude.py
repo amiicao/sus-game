@@ -40,7 +40,6 @@ class Dude(Unit):
                 self.last_swing_time = pygame.time.get_ticks()
                 self.change_stance(Stance.ATK)
                 self.swing_bat(self.direction, garbage_list,zone) #Cannot swing in neutral
-#!!!!!!!!!!!!!!!!!
             
             if(event.key in (pygame.K_w, pygame.K_UP)):
                 self.direction = Direction.NORTH
@@ -68,7 +67,6 @@ class Dude(Unit):
     #Template: Implement collision logic with trash objects; Only check for collision at moment of KEYDOWN!
     def swing_bat(self, hit_dir, garbage_list, zone):
         for piece in garbage_list: #Can hit multiple pieces out at once
-###            #if (self.collide_rect.colliderect(piece.collide_rect)):
             if (zone.collide_rect.colliderect(piece.collide_rect)):
                 piece.batted(hit_dir)
 
@@ -97,7 +95,3 @@ class Dude(Unit):
     #passing health to
     def getHealth(self):
         return self.health
-
-    #Template: what happens when ded?
- #   def death(self):
- #       pass
