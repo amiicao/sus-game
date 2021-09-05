@@ -12,8 +12,8 @@ class Dude(Unit):
         super().__init__()
         self.health = lives
         self.stance = Stance.REST
-        self.swingtimer = 3500 #3.5s
-        self.injurytimer = 500 #0.5s
+        self.swingtimer = 3000 #3.5s
+        self.injurytimer = 50 #0.2s
         self.direction = Direction.NEUTRAL
         self.last_swing_time = 0 #Used to track DUDE_ATK stance
         self.last_injury_time = 0 #Used to track DUDE_HURT stance
@@ -35,7 +35,7 @@ class Dude(Unit):
 
         if (event.type == pygame.KEYDOWN): 
             #If able to and attempting to hit; No empty swings allowed
-            if(event.key == pygame.K_SPACE and self.stance == Stance.REST and self.direction != Direction.NEUTRAL): #Must click spacebar AND hold a direction
+            if(event.key == pygame.K_SPACE and self.stance == Stance.REST): #Must click spacebar
                 self.last_swing_time = pygame.time.get_ticks()
                 self.change_stance(Stance.ATK)
                 self.swing_bat(self.direction, garbage_list) #Cannot swing in neutral
@@ -61,7 +61,7 @@ class Dude(Unit):
 
     def draw(self):
         self.rect = screen.blit(self.stance.value, self.coordinates) #Draw
-        self.collide_rect = self.rect.inflate(5,5)
+        self.collide_rect = self.rect.inflate(50,50)
 
     #Template: Implement collision logic with trash objects; Only check for collision at moment of KEYDOWN!
     def swing_bat(self, hit_dir, garbage_list):
