@@ -1,21 +1,15 @@
 from pygame.constants import DOUBLEBUF, KEYUP, K_SPACE, K_a, K_w
 from globals import *
-from enum import Enum
-
-class Direction(Enum):
-    NEUTRAL = 0 #Batter is not swinging in any direction
-    NORTH = 1
-    EAST = 2
-    SOUTH = 3
-    WEST = 4
+from unit import *
 
 class Stance(Enum):
     REST = DUDE_REST
     ATK = DUDE_ATK
     HURT = DUDE_HURT
 
-class Dude:
+class Dude(Unit):
     def __init__(self, lives) -> None:
+        super().__init__()
         self.health = lives
         self.stance = Stance.REST
         self.swingtimer = 1500 #1.5s
@@ -23,6 +17,7 @@ class Dude:
         self.direction = Direction.NEUTRAL
         self.last_swing_time = 0 #Used to track DUDE_ATK stance
         self.last_injury_time = 0 #Used to track DUDE_HURT stance
+        self.coordinates = (CIRCLE_COORDS[0] - DUDE_HEIGHT_OFFSET + 10, CIRCLE_COORDS[1] - DUDE_HEIGHT_OFFSET - 10)
     
     def events_processor(self, event): #Call method as part of events loop
         #If dude is injured, he is not able to aim in a direction or do anything
@@ -64,7 +59,8 @@ class Dude:
         self.stance = stance
 
     def draw(self):
-        screen.blit(self.stance.value, (CIRCLE_COORDS[0] - DUDE_HEIGHT_OFFSET + 10, CIRCLE_COORDS[1] - DUDE_HEIGHT_OFFSET - 10)) #Draw
+        self.rect = screen.blit(self.stance.value, self.coordinates) #Draw
+        self.collide_rect = self.rect.inflate(5,5)
 
     #Template: Implement collision logic with trash objects; Only check for collision at moment of KEYDOWN!
     def swing_bat(self):
@@ -78,6 +74,8 @@ class Dude:
         if(self.health <= 0):
             self.death() #TODO
 
+    def collision(self):
+        pass
 
     #Template: what happens when ded?
     def death(self):
