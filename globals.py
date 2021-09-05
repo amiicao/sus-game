@@ -6,6 +6,8 @@ import random
 import math
 pygame.font.init()
 
+
+isALIVE = True
 FPS = 60
 BIN_WIDTH, BIN_HEIGHT = 130, 200
 WIDTH, HEIGHT = 800, 800
@@ -14,7 +16,7 @@ WIDTH, HEIGHT = 800, 800
 screen = pygame.display.set_mode([WIDTH, HEIGHT]) #This must run before anything is drawn
 
 HEALTH_FONT = pygame.font.SysFont('comicsans', 75)
-ENDGAME_FONT = pygame.font.SysFont('comicsans', 100)
+ENDGAME_FONT = pygame.font.SysFont('comicsans', 75)
 CIRCLE_COORDS = (400, 400)
 CIRCLE_RADIUS = 75
 LIVES = 5
