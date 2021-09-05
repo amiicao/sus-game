@@ -8,13 +8,5 @@ class Unit:
         self.collide_rect = None
 
     @abstractmethod
-    def collision(self):
-        pass
-
-    @abstractmethod
     def draw(self):
-        pass
-
-    @abstractmethod
-    def death(self):
         pass

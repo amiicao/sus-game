@@ -25,15 +25,17 @@ class Garbage(Unit): #Pieces of trash
         if(self.head_inwards):
             self.move_towards(center_coords)
         else:
-            assert self.direction != Direction.NEUTRAL, "Pieces should always have a direction after being hit!"
-            self.move_towards(bin_coord_map[self.direction])
+            #assert self.direction != Direction.NEUTRAL, "Pieces should always have a direction after being hit!"
+            if(self.direction == Direction.NEUTRAL):
+                self.direction = Direction.NORTH #HACK
+            self.move_towards(bin_coord_map[self.direction], 5)
     
     #Moves piece 1 unit towards dest
-    def move_towards(self, dest): 
+    def move_towards(self, dest, speed=1): 
         delta_x = dest[0] - self.x
         delta_y = dest[1] - self.y
-        step_x = delta_x / float(FPS)
-        step_y = delta_y / float(FPS)
+        step_x = (delta_x / float(FPS)) * speed
+        step_y = (delta_y / float(FPS)) * speed
         self.x += step_x
         self.y += step_y
 
@@ -41,9 +43,17 @@ class Garbage(Unit): #Pieces of trash
         self.rect = screen.blit(self.surface, (self.x, self.y)) #Draw
         self.collide_rect = self.rect.inflate(2,2)
 
-    def collision(self):
+    def batted(self, direction): #Batted away by the guy
         self.head_inwards = False
+        self.direction = direction
         pass
 
-    def death(self):
+    def hit_guy(self): #Successfully hit the guy; Only deal with the piece, not the guy!
+        self.collide_rect.size = (0,0); #Effectively remove the collision box around the "used" piece
+        self.head_inwards = True #Get this piece to stop moving
+        del self
+        
+        pass
+
+    def reached_bin(self, bin_type: GarbageType): #Reached the garbage bin; Diff action depending on if correct bin
         pass
