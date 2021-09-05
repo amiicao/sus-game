@@ -20,6 +20,14 @@ class Dude(Unit):
         self.coordinates = (CIRCLE_COORDS[0] - DUDE_HEIGHT_OFFSET + 10, CIRCLE_COORDS[1] - DUDE_HEIGHT_OFFSET - 10)
     
     def events_processor(self, event): #Call method as part of events loop
+
+        ## TESTING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        print("running dude event")
+        #If dude is dead, we cant have any events
+        if(not isALIVE):
+            return
+
         #If dude is injured, he is not able to aim in a direction or do anything
         injury_time_delta = pygame.time.get_ticks() - self.last_injury_time
         if(self.stance == Stance.HURT and injury_time_delta >= self.injurytimer):
@@ -38,6 +46,9 @@ class Dude(Unit):
                 self.last_swing_time = pygame.time.get_ticks()
                 self.change_stance(Stance.ATK)
                 self.swing_bat() #TODO
+
+                ##########testing@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                self.injured()
             
             if(event.key == pygame.K_w):
                 self.direction = Direction.NORTH
@@ -77,6 +88,10 @@ class Dude(Unit):
     def collision(self):
         pass
 
+    #passing health to
+    def getHealth(self):
+        return self.health
+
     #Template: what happens when ded?
     def death(self):
-        pass
+        isALIVE = False

@@ -6,6 +6,8 @@ import random
 import math
 pygame.font.init()
 
+
+isALIVE = True
 FPS = 60
 BIN_WIDTH, BIN_HEIGHT = 130, 200
 WIDTH, HEIGHT = 800, 800

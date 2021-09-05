@@ -10,13 +10,13 @@ def draw_endgame():
     draw_endgame = ENDGAME_FONT.render("GAME OVER", 25, (0,0,0))
     screen.blit(draw_endgame,WIDTH/2-draw_endgame.get_width() /2 , HEIGHT/2 - draw_endgame.get_height()/2)
 
-def draw_window():
+def draw_window(lives):
     
     screen.blit(BACKGROUND, (0,0))
     # showing the remaining lives
     Lives_text = HEALTH_FONT.render("Lives: ", 15, (127,255,212))
     screen.blit(Lives_text, (WIDTH - Lives_text.get_width()- LIFE.get_width()*5 - 15, 5)) #Lives: ***** |
-    for i in range(LIVES):
+    for i in range(lives):
         #LIVES_REM= HEALTH_FONT.render("Lives: "+ str(LIVES), 25, (0,0,0))
         screen.blit(LIFE, (WIDTH - LIFE.get_width()*5 - 15 + LIFE.get_width()*i, LIFE.get_height()/2)) # let i = 2, |    Lives: 
     
@@ -41,7 +41,8 @@ def main():
 
     while running:
         clock.tick(FPS)
-        draw_window() #Init screen
+        remHealth = guy.getHealth()
+        draw_window(remHealth) #Init screen
 
         ##Game logic goes here!##
         guy.draw() #Only draw inside of a game loop!
@@ -50,8 +51,10 @@ def main():
 
 
         # If guy dies, end game message shows
-        #   guy.death() is called in Dude menthod (upon health <= 0)
-        #draw_endgame()
+        if(not isALIVE):
+            draw_endgame()
+            pygame.display.update()
+            pygame.quit()
 
         # Did the user click the window close button?
         for event in pygame.event.get():
@@ -60,6 +63,7 @@ def main():
             ##Grab more events here!##
             guy.events_processor(event)
             garbage_controller.events_processor(event)
+
             
 
 
