@@ -52,7 +52,6 @@ class Garbage(Unit): #Pieces of trash
         self.collide_rect.size = (0,0); #Effectively remove the collision box around the "used" piece
         self.head_inwards = True #Get this piece to stop moving
         del self
-        
         pass
 
     def reached_bin(self, bin_type: GarbageType): #Reached the garbage bin; Diff action depending on if correct bin

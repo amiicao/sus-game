@@ -19,7 +19,7 @@ HEALTH_FONT = pygame.font.SysFont('comicsans', 75)
 ENDGAME_FONT = pygame.font.SysFont('comicsans', 75)
 CIRCLE_COORDS = (400, 400)
 CIRCLE_RADIUS = 75
-LIVES = 20
+LIVES = 5
 GARBAGE_SIZE = 35
 
 class Direction(Enum):
@@ -51,6 +51,9 @@ BLUE_BIN_COORD = (WIDTH/2-BLUE_BIN.get_width()/2, 0)
 GREEN_BIN_COORD = (0,(HEIGHT/2-GREEN_BIN.get_height()/2))
 BLACK_BIN_COORD = (WIDTH/2-BLACK_BIN.get_width()/2, HEIGHT-BLACK_BIN.get_height())
 YELLOW_BIN_COORD = (WIDTH-YELLOW_BIN.get_width(),HEIGHT/2-YELLOW_BIN.get_height()/2)
+
+EXPLOSION_IMAGE = pygame.image.load(os.path.join('assets','EXPLOSION.png'))
+EXPLOSION = pygame.transform.scale(EXPLOSION_IMAGE, (BIN_WIDTH, BIN_HEIGHT))
 
 LIFE_IMAGE = pygame.image.load(os.path.join('assets','LIVES.png'))
 LIFE = pygame.transform.scale(LIFE_IMAGE, (25, 30))
