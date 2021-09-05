@@ -22,16 +22,10 @@ def draw_window(lives):
     screen.blit(BACKGROUND, (0,0))
     # showing the remaining lives
     Lives_text = HEALTH_FONT.render("Lives: ", 15, (127,255,212))
-    #screen.blit(Lives_text, (WIDTH - Lives_text.get_width()- LIFE.get_width()*5 - 15, 5)) 
+    screen.blit(Lives_text, (WIDTH - Lives_text.get_width()- LIFE.get_width()*5 - 15, 5)) 
     for i in range(lives):
-    #    screen.blit(LIFE, (WIDTH - LIFE.get_width()*5 - 15 + LIFE.get_width()*i, LIFE.get_height()/2)) # let i = 2, |    Lives: 
-        screen.blit(LIFE, (WIDTH - LIFE.get_width()*20 - 15 + LIFE.get_width()*i, LIFE.get_height()/2)) # let i = 2, |    Lives: 
+        screen.blit(LIFE, (WIDTH - LIFE.get_width()*5 - 15 + LIFE.get_width()*i, LIFE.get_height()/2)) # let i = 2, |    Lives: 
     
-
-    
-
-###################### added base to the line
-   # pygame.draw.circle(screen, (245, 245, 220), CIRCLE_COORDS, CIRCLE_RADIUS)
 
 def draw_bins() -> List: #Get bin rects
     bins_rect = [] # Add the Bins on NESW of screen
@@ -74,9 +68,7 @@ def main():
             ##Grab more events here!##
             guy.events_processor(event, garbage_controller.actives,zone)
             garbage_controller.events_processor(event)
-
             
-
 
         # Update the screen
         pygame.display.update()
