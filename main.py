@@ -55,9 +55,7 @@ def main():
 
         # If guy dies, end game message shows
         if(remHealth == 0):
-            print ("DEAD")
             draw_endgame()
-            pygame.display.update()
             pygame.quit()
 
         # Did the user click the window close button?
