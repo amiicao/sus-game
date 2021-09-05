@@ -53,38 +53,11 @@ class Garbage(Unit): #Pieces of trash
         self.head_inwards = True #Get this piece to stop moving
 
     def reached_bin(self, bin_type: GarbageType): #Reached the garbage bin; Diff action depending on if correct bin
-        pass
-
-
-
-
-
-
-
-
-
-
-
-    # here are the lines of code to show an explosion. 
-
-    # example:
-    # if colleratct blue bin:
-        #
-        #boom = pygame.mixer.Sound(os.path.join('assets', 'exploding_audio.ogg'))
-        #pygame.mixer.Sound.play(boom)
-    
-
-
-        #screen.blit(EXPLOSION,(WIDTH/2-BLUE_BIN.get_width()/2, 0)) #bluebin
-        #screen.blit(EXPLOSION,(0,(HEIGHT/2-GREEN_BIN.get_height()/2))) #greenbin
-        #screen.blit(EXPLOSION,(WIDTH/2-BLACK_BIN.get_width()/2, HEIGHT-BLACK_BIN.get_height())) #blackbin
-        #screen.blit(EXPLOSION,(WIDTH-YELLOW_BIN.get_width(),HEIGHT/2-YELLOW_BIN.get_height()/2)) #yellowbin
-        #pygame.display.update()
-        if (self.type == bin_type): #if reached correct bin
-            pass #Do nothing, piece dies normally
+        if (self.type == bin_type): #if reached correct bin; piece dies peacefully
+            ding = pygame.mixer.Sound(os.path.join('assets', 'smw_coin.wav'))
+            pygame.mixer.Sound.play(ding)
         else:
             self.explode()
-            pass
     
     def explode(self): #Upon reaching incorrect bin
         print("explosion")
