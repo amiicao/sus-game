@@ -7,6 +7,7 @@ import math
 pygame.font.init()
 pygame.mixer.init()
 
+pygame.display.set_caption("Chuck it Right!")
 
 isALIVE = True
 FPS = 60
@@ -21,7 +22,7 @@ ENDGAME_FONT = pygame.font.SysFont('comicsans', 75)
 CIRCLE_COORDS = (400, 400)
 CIRCLE_RADIUS = 75
 LIVES = 5
-GARBAGE_SIZE = 35
+GARBAGE_SIZE = 65
 
 class Direction(Enum):
     NEUTRAL = 0 #Batter is not swinging in any direction
@@ -54,7 +55,7 @@ BLACK_BIN_COORD = (WIDTH/2-BLACK_BIN.get_width()/2, HEIGHT-BLACK_BIN.get_height(
 YELLOW_BIN_COORD = (WIDTH-YELLOW_BIN.get_width(),HEIGHT/2-YELLOW_BIN.get_height()/2)
 
 EXPLOSION_IMAGE = pygame.image.load(os.path.join('assets','EXPLOSION.png'))
-EXPLOSION = pygame.transform.scale(EXPLOSION_IMAGE, (BIN_WIDTH, BIN_HEIGHT))
+EXPLOSION = pygame.transform.scale(EXPLOSION_IMAGE, (150, 150))
 
 LIFE_IMAGE = pygame.image.load(os.path.join('assets','LIVES.png'))
 LIFE = pygame.transform.scale(LIFE_IMAGE, (25, 30))

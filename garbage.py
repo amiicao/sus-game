@@ -51,8 +51,6 @@ class Garbage(Unit): #Pieces of trash
     def hit_guy(self): #Successfully hit the guy; Only deal with the piece, not the guy!
         self.collide_rect.size = (0,0); #Effectively remove the collision box around the "used" piece
         self.head_inwards = True #Get this piece to stop moving
-        del self
-        pass
 
     def reached_bin(self, bin_type: GarbageType): #Reached the garbage bin; Diff action depending on if correct bin
         pass
@@ -71,8 +69,7 @@ class Garbage(Unit): #Pieces of trash
 
     # example:
     # if colleratct blue bin:
-        #screen.blit(EXPLOSION,(WIDTH/2-BLUE_BIN.get_width()/2, 0)) #bluebin
-        #pygame.display.update()
+        #
         #boom = pygame.mixer.Sound(os.path.join('assets', 'exploding_audio.ogg'))
         #pygame.mixer.Sound.play(boom)
     
@@ -83,3 +80,17 @@ class Garbage(Unit): #Pieces of trash
         #screen.blit(EXPLOSION,(WIDTH/2-BLACK_BIN.get_width()/2, HEIGHT-BLACK_BIN.get_height())) #blackbin
         #screen.blit(EXPLOSION,(WIDTH-YELLOW_BIN.get_width(),HEIGHT/2-YELLOW_BIN.get_height()/2)) #yellowbin
         #pygame.display.update()
+        if (self.type == bin_type): #if reached correct bin
+            pass #Do nothing, piece dies normally
+        else:
+            self.explode()
+            pass
+    
+    def explode(self): #Upon reaching incorrect bin
+        print("explosion")
+        screen.blit(EXPLOSION,(self.x-10,(self.y-30))) #bluebin
+        pygame.display.update()
+
+        boom = pygame.mixer.Sound(os.path.join('assets', 'exploding_audio.ogg'))
+        pygame.mixer.Sound.play(boom)
+        pass 
