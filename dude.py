@@ -21,13 +21,6 @@ class Dude(Unit):
     
     def events_processor(self, event): #Call method as part of events loop
 
-        ## TESTING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-        print("running dude event")
-        #If dude is dead, we cant have any events
-        if(not isALIVE):
-            return
-
         #If dude is injured, he is not able to aim in a direction or do anything
         injury_time_delta = pygame.time.get_ticks() - self.last_injury_time
         if(self.stance == Stance.HURT and injury_time_delta >= self.injurytimer):
@@ -47,9 +40,6 @@ class Dude(Unit):
                 self.change_stance(Stance.ATK)
                 self.swing_bat() #TODO
 
-                ##########testing@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                self.injured()
-            
             if(event.key == pygame.K_w):
                 self.direction = Direction.NORTH
             elif(event.key == pygame.K_d):
@@ -82,8 +72,9 @@ class Dude(Unit):
         self.last_injury_time = pygame.time.get_ticks()
         self.change_stance(Stance.HURT) #Timer set, injured dude cannot attack/revert to rest instantly
         self.health -= 1
-        if(self.health <= 0):
-            self.death() #TODO
+ 
+ #       if(self.health <= 0):
+ #           self.death() 
 
     def collision(self):
         pass
@@ -93,5 +84,5 @@ class Dude(Unit):
         return self.health
 
     #Template: what happens when ded?
-    def death(self):
-        isALIVE = False
+ #   def death(self):
+ #       pass

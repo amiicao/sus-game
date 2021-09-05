@@ -38,10 +38,7 @@ class GarbageController: #deliberately not inheriting off Garbage; This just sto
             yield garbage
 
     def events_processor(self, event):
-        #if dude is dead, we can't have this event
-        if(not isALIVE):
-            return
-        
+        pass
         #TODO collision
 
 

@@ -7,8 +7,11 @@ pygame.init()
 
 #GAME OVER message
 def draw_endgame():
-    draw_endgame = ENDGAME_FONT.render("GAME OVER", 25, (0,0,0))
-    screen.blit(draw_endgame,WIDTH/2-draw_endgame.get_width() /2 , HEIGHT/2 - draw_endgame.get_height()/2)
+    print("endgame")
+    endgame_text = ENDGAME_FONT.render("GAME OVER", 15, (0,0,0))
+    screen.blit(endgame_text,(WIDTH/2 - endgame_text.get_width()/2, HEIGHT/2 ))
+    pygame.display.update()
+    pygame.time.delay(4000)
 
 def draw_window(lives):
     
@@ -51,7 +54,8 @@ def main():
 
 
         # If guy dies, end game message shows
-        if(not isALIVE):
+        if(remHealth == 0):
+            print ("DEAD")
             draw_endgame()
             pygame.display.update()
             pygame.quit()

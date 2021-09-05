@@ -16,7 +16,7 @@ WIDTH, HEIGHT = 800, 800
 screen = pygame.display.set_mode([WIDTH, HEIGHT]) #This must run before anything is drawn
 
 HEALTH_FONT = pygame.font.SysFont('comicsans', 75)
-ENDGAME_FONT = pygame.font.SysFont('comicsans', 100)
+ENDGAME_FONT = pygame.font.SysFont('comicsans', 75)
 CIRCLE_COORDS = (400, 400)
 CIRCLE_RADIUS = 75
 LIVES = 5
