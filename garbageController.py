@@ -48,7 +48,8 @@ class GarbageController: #deliberately not inheriting off Garbage; This just sto
             next(self.generator)
             self.last_spawn_time = pygame.time.get_ticks() #reset
 
-        for piece in self.actives:
+        t_list = self.actives.copy()
+        for piece in t_list:
             piece.move() #move THEN draw new pos
             piece.draw()
             
@@ -57,3 +58,5 @@ class GarbageController: #deliberately not inheriting off Garbage; This just sto
             if (collided_bin > -1 and piece.direction != Direction.NEUTRAL): #if collided
                 bin_type = GarbageType(collided_bin) 
                 piece.reached_bin(bin_type)
+                self.actives.remove(piece)
+                del piece

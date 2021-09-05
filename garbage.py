@@ -51,9 +51,14 @@ class Garbage(Unit): #Pieces of trash
     def hit_guy(self): #Successfully hit the guy; Only deal with the piece, not the guy!
         self.collide_rect.size = (0,0); #Effectively remove the collision box around the "used" piece
         self.head_inwards = True #Get this piece to stop moving
-        del self
-        
-        pass
 
     def reached_bin(self, bin_type: GarbageType): #Reached the garbage bin; Diff action depending on if correct bin
-        pass
+        if (self.type == bin_type): #if reached correct bin
+            pass #Do nothing, piece dies normally
+        else:
+            self.explode()
+            pass
+    
+    def explode(self): #Upon reaching incorrect bin
+        print("explosion")
+        pass 

@@ -80,13 +80,14 @@ class Dude(Unit):
 
     #Call in main game loop; Checks if guy hit by garbage & injures him if so
     def hit_check(self, garbage_list) -> bool: #Takes in list of active Garbage objs from garbageController
-        for piece in garbage_list:
+        t_list = garbage_list.copy()
+        for piece in t_list:
             #if(self.collide_rect.colliderect(piece.collide_rect) and self.stance == Stance.REST and temp == True):
             if(self.collide_rect.colliderect(piece.collide_rect) and self.stance == Stance.REST ):
                 piece.hit_guy()
+                garbage_list.remove(piece); del piece
                 self.injured()
                 print ("been hit")
-            #del piece
 
     #passing health to
     def getHealth(self):
