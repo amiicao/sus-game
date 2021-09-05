@@ -33,6 +33,7 @@ def draw_bins() -> List: #Get bin rects
     bins_rect.append(screen.blit(GREEN_BIN, GREEN_BIN_COORD))
     bins_rect.append(screen.blit(BLACK_BIN, BLACK_BIN_COORD))
     bins_rect.append(screen.blit(YELLOW_BIN, YELLOW_BIN_COORD))
+
     return bins_rect #[Blue, Green, Black, Yellow]
 
 def main():
