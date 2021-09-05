@@ -29,7 +29,7 @@ class Direction(Enum):
     SOUTH = 3
     WEST = 4
 
-class GarbageType(Enum):
+class GarbageType(Enum): #NESW
     BLUE = 0
     GREEN = 1
     BLACK = 2

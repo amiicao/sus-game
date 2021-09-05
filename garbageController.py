@@ -10,7 +10,7 @@ garbage_dict = {
 
 class GarbageController: #deliberately not inheriting off Garbage; This just stores and manages garbage objects
     def __init__(self) -> None:
-        self.actives = [] #List of Garbage currently in flight
+        self.actives = [] #List of Garbage objects currently in flight
         self.last_spawn_time = 0 #get delta (in ms)
         self.spawn_timer = 1000 #spawn garbage every 1s
         self.generator = self.garbage_generator()
@@ -42,7 +42,7 @@ class GarbageController: #deliberately not inheriting off Garbage; This just sto
         #TODO collision
 
 
-    def update(self):
+    def update(self, bins):
         spawn_delta = pygame.time.get_ticks() - self.last_spawn_time
         if(spawn_delta >= self.spawn_timer):
             next(self.generator)
@@ -51,3 +51,9 @@ class GarbageController: #deliberately not inheriting off Garbage; This just sto
         for piece in self.actives:
             piece.move() #move THEN draw new pos
             piece.draw()
+            
+            #Garbage going into a bin
+            collided_bin = piece.collide_rect.collidelist(bins)
+            if (collided_bin > -1 and piece.direction != Direction.NEUTRAL): #if collided
+                bin_type = GarbageType(collided_bin) 
+                piece.reached_bin(bin_type)

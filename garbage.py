@@ -41,9 +41,12 @@ class Garbage(Unit): #Pieces of trash
         self.rect = screen.blit(self.surface, (self.x, self.y)) #Draw
         self.collide_rect = self.rect.inflate(2,2)
 
-    def collision(self):
+    def batted(self, direction): #Batted away by the guy
         self.head_inwards = False
         pass
 
-    def death(self):
+    def hit_guy(self): #Successfully hit the guy; Only deal with the piece, not the guy!
+        pass
+
+    def reached_bin(self, bin_type: GarbageType): #Reached the garbage bin; Diff action depending on if correct bin
         pass
