@@ -84,10 +84,11 @@ class Dude(Unit):
         for piece in t_list:
             #if(self.collide_rect.colliderect(piece.collide_rect) and self.stance == Stance.REST and temp == True):
             if(self.collide_rect.colliderect(piece.collide_rect) and self.stance == Stance.REST ):
-                piece.hit_guy()
-                garbage_list.remove(piece); del piece
-                self.injured()
-                print ("been hit")
+                if(piece.head_inwards): #Don't let the guy whack pieces into himself
+                    piece.hit_guy()
+                    garbage_list.remove(piece); del piece
+                    self.injured()
+                    print ("been hit")
 
     #passing health to
     def getHealth(self):
