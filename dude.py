@@ -77,6 +77,9 @@ class Dude(Unit):
         self.last_injury_time = pygame.time.get_ticks()
         self.change_stance(Stance.HURT) #Timer set, injured dude cannot attack/revert to rest instantly
         self.health -= 1
+    
+        meow = pygame.mixer.Sound(os.path.join('assets', 'meow_audio.wav'))
+        pygame.mixer.Sound.play(meow)
 
 
     #Call in main game loop; Checks if guy hit by garbage & injures him if so
@@ -86,8 +89,7 @@ class Dude(Unit):
             if(self.collide_rect.colliderect(piece.collide_rect) and self.stance == Stance.REST ):
                 piece.hit_guy()
                 self.injured()
-                print ("been hit")
-            #del piece
+            
 
     #passing health to
     def getHealth(self):
