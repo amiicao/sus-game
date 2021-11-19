@@ -27,3 +27,6 @@ The garbage and their corresponding bins are as follows:
 **CREDITS**\
 Brian Fu https://github.com/brianfu \
 Amy Cao https://github.com/amiicao
+
+**LICENSE**\
+MIT
